@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Label layoutX="20.0" layoutY="50.0" prefHeight="30.0" prefWidth="75.0" text="First name" textFill="#b15233">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="100.0" prefHeight="30.0" prefWidth="75.0" text="Last name" textFill="#b15233">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="150.0" prefHeight="30.0" prefWidth="75.0" text="Email" textFill="#b15233">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="200.0" prefHeight="30.0" prefWidth="75.0" text="Username" textFill="#b15233">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="250.0" prefHeight="30.0" prefWidth="75.0" text="Password" textFill="#b15233">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="88.0" layoutY="299.0" mnemonicParsing="false" onAction="#pressCreate" prefHeight="30.0" prefWidth="94.0" text="Create ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="fname" layoutX="108.0" layoutY="53.0" />
+      <TextField fx:id="lname" layoutX="108.0" layoutY="103.0" />
+      <TextField fx:id="email" layoutX="108.0" layoutY="155.0" />
+      <TextField fx:id="username" layoutX="108.0" layoutY="205.0" />
+      <PasswordField fx:id="password" layoutX="108.0" layoutY="253.0" />
+   </children>
+</Pane>
