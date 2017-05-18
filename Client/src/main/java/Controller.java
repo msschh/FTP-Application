@@ -3,10 +3,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.json.JSONObject;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
 
-public class Controller {
+public class Controller{
 
     public void pressSignup(ActionEvent e) throws IOException {
         Window w = new Window();
@@ -19,17 +21,30 @@ public class Controller {
     private PasswordField passfield;
     public void pressLogin(ActionEvent e) throws IOException {
         Window w = new Window();
+        //Read username and password
         String username = userfield.getText();
         userfield.setText("");
         String password = passfield.getText();
         passfield.setText("");
         String encryptedPassword = Validate.vigenereEncryption(password);
-        // if se afla in baza de date si parola e ok
-        if (true) {
+
+        //Create JSON string
+        String json = new String("{\"type\":\"login\",\"username\":\"" + username + "\",\"password\":\"" + encryptedPassword + "\"}");
+        //System.out.println(json);
+
+        //Send the JSON to the server through a socket, then wait for it's response.
+        Socket client = new Socket("127.0.0.1", 40000);
+        DataInputStream in = new DataInputStream(client.getInputStream());
+        DataOutputStream out = new DataOutputStream(client.getOutputStream());
+        out.writeUTF(json);
+        String answer = in.readUTF();
+
+        if (answer.equals("Access granted!")) {
             w.FTPWindow();
             System.out.println(username);
             System.out.println(encryptedPassword);
         } else {
+            System.out.println(answer);
             w.alertBox();
         }
     }
