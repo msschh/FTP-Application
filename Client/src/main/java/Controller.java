@@ -94,11 +94,6 @@ public class Controller{
             out.writeUTF(json);
             String answer = in.readUTF();
 
-            //JSONObject j = new JSONObject(date);
-            //String str = j.toString();
-
-            //System.out.println(str);
-
             Window w = new Window();
             if (answer.equals("Account succes!!")) {
                 w.FTPWindow();
