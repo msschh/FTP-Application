@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
+import sample.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -33,7 +34,7 @@ public class Controller{
         //System.out.println(json);
 
         //Send the JSON to the server through a socket, then wait for it's response.
-        Socket client = new Socket("127.0.0.1", 40000);
+        Socket client = new Socket("93.115.17.244", 40000);
         DataInputStream in = new DataInputStream(client.getInputStream());
         DataOutputStream out = new DataOutputStream(client.getOutputStream());
         out.writeUTF(json);
@@ -41,6 +42,7 @@ public class Controller{
 
         if (answer.equals("Access granted!")) {
             w.FTPWindow();
+            Main.stage.close();
             System.out.println(username);
             System.out.println(encryptedPassword);
         } else {
@@ -64,27 +66,45 @@ public class Controller{
         boolean ok = true;
         if (!valid.validName(firstName)) {
             ok = false;
-            System.out.println("Invalid firstname");
         }
         if (!valid.validName(lastName)) {
             ok = false;
-            System.out.println("Invalid lastname");
         }
         if (!valid.validUsername(userName)) {
             ok = false;
-            System.out.println("Invalid username");
         }
         if (!valid.validEmail(eMail)) {
             ok = false;
-            System.out.println("Invalid email");
         }
         if (!valid.validPassword(pass)) {
             ok = false;
-            System.out.println("Invalid password");
         }
 
         if (ok) {
-            System.out.println("Cont Valid!!!");
+            String json = new String("{\"type\":\"login\",\"username\":\"" + username + "\",\"password\":\"" + "\"}");
+            String date = "{\"type\":\"signup\"," +
+                    "\"firstname\":\"" + firstName + "\"," +
+                    "\"lastname\":\"" + lastName + "\"," +
+                    "\"email\":\"" + eMail + "\"," +
+                    "\"username\":\"" + userName + "\"," +
+                    "\"password\":\"" + pass + "\"" + "}";
+            Socket client = new Socket("93.115.17.244", 40000);
+            DataInputStream in = new DataInputStream(client.getInputStream());
+            DataOutputStream out = new DataOutputStream(client.getOutputStream());
+            out.writeUTF(json);
+            String answer = in.readUTF();
+
+            //JSONObject j = new JSONObject(date);
+            //String str = j.toString();
+
+            //System.out.println(str);
+
+            Window w = new Window();
+            if (answer.equals("Account succes!!")) {
+                w.FTPWindow();
+            } else {
+                w.alertBox();
+            }
 
         } else {
             Window w = new Window();
