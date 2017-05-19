@@ -18,14 +18,14 @@ public class FTPController {
     }
 
     public void pressLogout(ActionEvent e) throws IOException {
-    /*
+
         String json = "{\"type\":\"logout\"," +
                 "\"username\":\"" + Controller.uName + "\"" + "}";
-        Socket client = new Socket("127.0.0.1", 40000);//93.115.17.244
+        out.writeUTF(json);
+    /*    Socket client = new Socket("127.0.0.1", 40000);//93.115.17.244
         DataInputStream in = new DataInputStream(client.getInputStream());
         DataOutputStream out = new DataOutputStream(client.getOutputStream());
         System.out.println(json);
-        out.writeUTF(json);
         String answer = in.readUTF();
 
         System.out.println(json.toString());
