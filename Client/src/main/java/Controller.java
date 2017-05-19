@@ -90,7 +90,6 @@ public class Controller{
             Socket client = new Socket("93.115.17.244", 40000);
             DataInputStream in = new DataInputStream(client.getInputStream());
             DataOutputStream out = new DataOutputStream(client.getOutputStream());
-            System.out.println(json);
             out.writeUTF(json);
             String answer = in.readUTF();
 
