@@ -11,6 +11,8 @@ import java.net.Socket;
 
 public class Controller{
 
+    static public String uName;
+
     public void pressSignup(ActionEvent e) throws IOException {
         Window w = new Window();
         w.AccountWindow();
@@ -24,6 +26,7 @@ public class Controller{
         Window w = new Window();
         //Read username and password
         String username = userfield.getText();
+        uName = username;
         userfield.setText("");
         String password = passfield.getText();
         passfield.setText("");
@@ -34,7 +37,7 @@ public class Controller{
         //System.out.println(json);
 
         //Send the JSON to the server through a socket, then wait for it's response.
-        Socket client = new Socket("93.115.17.244", 40000);
+        Socket client = new Socket("127.0.0.1", 40000);//93.115.17.244
         DataInputStream in = new DataInputStream(client.getInputStream());
         DataOutputStream out = new DataOutputStream(client.getOutputStream());
         out.writeUTF(json);
@@ -42,7 +45,6 @@ public class Controller{
 
         if (answer.equals("Access granted!")) {
             w.FTPWindow();
-            Main.stage.close();
             System.out.println(username);
             System.out.println(encryptedPassword);
         } else {
@@ -86,10 +88,11 @@ public class Controller{
                     "\"lastname\":\"" + lastName + "\"," +
                     "\"email\":\"" + eMail + "\"," +
                     "\"username\":\"" + userName + "\"," +
-                    "\"password\":\"" + pass + "\"" + "}";
-            Socket client = new Socket("93.115.17.244", 40000);
+                    "\"password\":\"" + Validate.vigenereEncryption(pass) + "\"" + "}";
+            Socket client = new Socket("127.0.0.1", 40000);//93.115.17.244
             DataInputStream in = new DataInputStream(client.getInputStream());
             DataOutputStream out = new DataOutputStream(client.getOutputStream());
+            System.out.println(json);
             out.writeUTF(json);
             String answer = in.readUTF();
 

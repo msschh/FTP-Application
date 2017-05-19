@@ -75,4 +75,22 @@ public class Validate {
         return encriptedPassword;
     }
 
+    public static StringBuilder getNameFromPath(String s) {
+
+        StringBuilder fileName = new StringBuilder("");
+        for (int i = s.length() - 1; i >= 0; --i) {
+            if (s.charAt(i) == '\\') {
+                break;
+            } else {
+                fileName.append(s.charAt(i));
+            }
+        }
+        fileName.reverse();
+
+        if (fileName.equals("")) {
+            System.out.println("Eroare path name!!!");
+        }
+
+        return fileName;
+    }
 }

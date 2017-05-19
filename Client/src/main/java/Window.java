@@ -8,16 +8,20 @@ import java.io.IOException;
 
 public class Window {
 
+    static Stage acWindow;
+    static Stage ftpStage;
+    static boolean create = false;
+
     public void AccountWindow() throws IOException {
         Stage window = new Stage();
-
+        this.create = true;
         Parent rootnew = FXMLLoader.load(getClass().getResource("accountwindow.fxml"));
 
         Scene scene = new Scene(rootnew);
         window.setResizable(false);
         window.setTitle("Create Account");
         window.setScene(scene);
-
+        this.acWindow = window;
         window.show();
 
     }
@@ -30,7 +34,13 @@ public class Window {
         window.setResizable(false);
         window.setTitle("FTP");
         window.setScene(scene);
-
+        this.ftpStage = window;
+        Main.stage.close();
+        if (create) {
+            System.out.println(create);
+            this.acWindow.close();
+            create = false;
+        }
         window.show();
 
     }
