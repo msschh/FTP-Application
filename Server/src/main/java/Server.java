@@ -7,6 +7,7 @@ public class Server {
     private Integer port;
     private ServerSocket MyService;
     private List<Socket> clients;
+    public static List<String> usersOnline = new ArrayList<>();
 
     Server(Integer port){
         this.port = port;

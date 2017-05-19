@@ -47,6 +47,7 @@ public class ServerThread implements Runnable{
         String answer = getPassword(username);
         if (password.equals(answer)) {
             out.writeUTF("Access granted!");
+            Server.usersOnline.add(username);
         } else {
             out.writeUTF("Access denied!");
             if(in != null) in.close();
@@ -59,7 +60,25 @@ public class ServerThread implements Runnable{
         return password;
     }
 
-    private void signup(JSONObject jsonObject){
+    private void signup(JSONObject jsonObject) throws Exception{
+        System.out.println(jsonObject);
+        String username = jsonObject.getString("username");
+        String password = jsonObject.getString("password");
+        String firstName = jsonObject.getString(("firstname"));
+        String lastName = jsonObject.getString(("lastname"));
+        String email = jsonObject.getString(("email"));
 
+        if(unique(username, email)){
+            out.writeUTF("Singup accepted!");
+        }
+        else{
+            out.writeUTF("Singup rejected!");
+        }
+    }
+
+    private boolean unique(String username, String email){
+
+
+        return true;
     }
 }

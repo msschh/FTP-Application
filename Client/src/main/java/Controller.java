@@ -81,8 +81,7 @@ public class Controller{
         }
 
         if (ok) {
-            String json = new String("{\"type\":\"login\",\"username\":\"" + username + "\",\"password\":\"" + "\"}");
-            String date = "{\"type\":\"signup\"," +
+            String json = "{\"type\":\"signup\"," +
                     "\"firstname\":\"" + firstName + "\"," +
                     "\"lastname\":\"" + lastName + "\"," +
                     "\"email\":\"" + eMail + "\"," +
@@ -91,11 +90,12 @@ public class Controller{
             Socket client = new Socket("93.115.17.244", 40000);
             DataInputStream in = new DataInputStream(client.getInputStream());
             DataOutputStream out = new DataOutputStream(client.getOutputStream());
+            System.out.println(json);
             out.writeUTF(json);
             String answer = in.readUTF();
 
             Window w = new Window();
-            if (answer.equals("Account succes!!")) {
+            if (answer.equals("Singup accepted!")) {
                 w.FTPWindow();
             } else {
                 w.alertBox();
