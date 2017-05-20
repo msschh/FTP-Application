@@ -61,14 +61,17 @@ public class Validate {
         String encriptedPassword = "";
         for (int i = 0, j = 0; i < s.length(); ++i) {
             char c = s.charAt(i);
-            if (c >= 'a' && c <= 'z')
-                encriptedPassword += (char)((c + key.charAt(j) - 2 * 'a') % 26 + 'a');
+            if (c >= 'a' && c <= 'z') {
+                encriptedPassword += (char) ((c + key.charAt(j) - 2 * 'a') % 26 + 'a');
+            }
             if (c >= 'A' && c <= 'Z')
                 encriptedPassword += (char)((c + key.charAt(j) - 2 * 'A') % 26 + 'A');
             if (c >= '0' && c <= '9')
-                encriptedPassword += (char)(c + key.charAt(j));
-            else
-                continue;
+                if (c >= '0' && c < '9')
+                    encriptedPassword += (char)(c + 1);
+                else
+                    encriptedPassword += (char)(c - 1);
+
 
             j = ++j % key.length();
         }

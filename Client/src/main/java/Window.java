@@ -10,6 +10,7 @@ public class Window {
 
     static Stage acWindow;
     static Stage ftpStage;
+    static Stage stage;
     static boolean create = false;
 
     public void AccountWindow() throws IOException {
@@ -35,7 +36,7 @@ public class Window {
         window.setTitle("FTP");
         window.setScene(scene);
         this.ftpStage = window;
-        Main.stage.close();
+        stage.close();
         if (create) {
             System.out.println(create);
             this.acWindow.close();

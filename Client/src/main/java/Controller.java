@@ -17,7 +17,7 @@ public class Controller{
     public void pressSignup(ActionEvent e) throws IOException {
         Window w = new Window();
         w.AccountWindow();
-       // w.stage.close();
+        w.stage.close();
     }
 
     @FXML
@@ -50,7 +50,7 @@ public class Controller{
 
         if (answer.equals("Access granted!")) {
             w.FTPWindow();
-            //w.stage.close();
+            w.stage.close();
             System.out.println(username);
             System.out.println(encryptedPassword);
         } else {
@@ -108,7 +108,7 @@ public class Controller{
             Window w = new Window();
             if (answer.equals("Singup accepted!")) {
                 //w.FTPWindow();
-                //w.stage.show();
+                w.stage.show();
                 w.acWindow.close();
             } else {
                 w.alertBox();
