@@ -12,10 +12,12 @@ import java.net.Socket;
 public class Controller{
 
     static public String uName;
+    static public Socket client;
 
     public void pressSignup(ActionEvent e) throws IOException {
         Window w = new Window();
         w.AccountWindow();
+       // w.stage.close();
     }
 
     @FXML
@@ -34,17 +36,21 @@ public class Controller{
 
         //Create JSON string
         String json = new String("{\"type\":\"login\",\"username\":\"" + username + "\",\"password\":\"" + encryptedPassword + "\"}");
-        //System.out.println(json);
+        System.out.println(username);
+        System.out.println(encryptedPassword);
 
         //Send the JSON to the server through a socket, then wait for it's response.
-        Socket client = new Socket("127.0.0.1", 40000);//93.115.17.244
+        client = new Socket("93.115.17.244", 40000);//93.115.17.244
         DataInputStream in = new DataInputStream(client.getInputStream());
         DataOutputStream out = new DataOutputStream(client.getOutputStream());
         out.writeUTF(json);
         String answer = in.readUTF();
 
+        System.out.println("ok");
+
         if (answer.equals("Access granted!")) {
             w.FTPWindow();
+            //w.stage.close();
             System.out.println(username);
             System.out.println(encryptedPassword);
         } else {
@@ -89,16 +95,21 @@ public class Controller{
                     "\"email\":\"" + eMail + "\"," +
                     "\"username\":\"" + userName + "\"," +
                     "\"password\":\"" + Validate.vigenereEncryption(pass) + "\"" + "}";
-            Socket client = new Socket("127.0.0.1", 40000);//93.115.17.244
+            System.out.println(Validate.vigenereEncryption(pass));
+            Socket client = new Socket("93.115.17.244", 40000);//93.115.17.244
             DataInputStream in = new DataInputStream(client.getInputStream());
             DataOutputStream out = new DataOutputStream(client.getOutputStream());
             System.out.println(json);
             out.writeUTF(json);
             String answer = in.readUTF();
 
+            System.out.println("ok");
+
             Window w = new Window();
             if (answer.equals("Singup accepted!")) {
-                w.FTPWindow();
+                //w.FTPWindow();
+                //w.stage.show();
+                w.acWindow.close();
             } else {
                 w.alertBox();
             }
