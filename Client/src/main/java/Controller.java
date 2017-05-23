@@ -1,10 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.json.JSONObject;
-import sample.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -12,6 +9,8 @@ import java.net.Socket;
 public class Controller{
 
     static public String uName;
+    static public String uPassword;
+    static public String serverIP = "localhost";
     static public Socket client;
 
     public void pressSignup(ActionEvent e) throws IOException {
@@ -33,6 +32,7 @@ public class Controller{
         String password = passfield.getText();
         passfield.setText("");
         String encryptedPassword = Validate.vigenereEncryption(password);
+        uPassword = encryptedPassword;
 
         //Create JSON string
         String json = new String("{\"type\":\"login\",\"username\":\"" + username + "\",\"password\":\"" + encryptedPassword + "\"}");
@@ -40,7 +40,7 @@ public class Controller{
         System.out.println(encryptedPassword);
 
         //Send the JSON to the server through a socket, then wait for it's response.
-        client = new Socket("93.115.17.244", 40000);//93.115.17.244
+        client = new Socket(serverIP, 40000);//93.115.17.244
         DataInputStream in = new DataInputStream(client.getInputStream());
         DataOutputStream out = new DataOutputStream(client.getOutputStream());
         out.writeUTF(json);
@@ -48,11 +48,16 @@ public class Controller{
 
         System.out.println("ok");
 
+        System.out.print(answer);
         if (answer.equals("Access granted!")) {
             w.FTPWindow();
             w.stage.close();
             System.out.println(username);
             System.out.println(encryptedPassword);
+            LoginThread login = new LoginThread(client);
+            Thread th = new Thread(login);
+            th.start();
+
         } else {
             System.out.println(answer);
             w.alertBox();
@@ -96,7 +101,7 @@ public class Controller{
                     "\"username\":\"" + userName + "\"," +
                     "\"password\":\"" + Validate.vigenereEncryption(pass) + "\"" + "}";
             System.out.println(Validate.vigenereEncryption(pass));
-            Socket client = new Socket("93.115.17.244", 40000);//93.115.17.244
+            Socket client = new Socket(serverIP, 40000);//93.115.17.244
             DataInputStream in = new DataInputStream(client.getInputStream());
             DataOutputStream out = new DataOutputStream(client.getOutputStream());
             System.out.println(json);

@@ -7,7 +7,7 @@ public class Server {
     private Integer port;
     private ServerSocket MyService;
     private List<Socket> clients;
-    public static List<String> usersOnline = new ArrayList<>();
+    static Set<String> usersOnline = new HashSet<>();
     static String pathToServer = "C:\\Users\\Enache\\Desktop\\FTP-Application\\Server\\data";
 
     Server(Integer port){

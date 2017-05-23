@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 
 public class ServerThread implements Runnable{
 
@@ -43,45 +44,61 @@ public class ServerThread implements Runnable{
         }
     }
 
-    private void login(JSONObject jsonObject) throws Exception{
-        String username = jsonObject.getString("username");
-        String password = jsonObject.getString("password");
-
-        //Querying the database to find if the username&password combination is correct.
-        String answer = getPassword(username);
-        if (password.equals(answer)) {
-            out.writeUTF("Access granted!");
-            Server.usersOnline.add(username);
-            while(true){
-                JSONObject jsonObject2 = new JSONObject(in.readUTF());//Citim JSON
-                String type = jsonObject2.getString("type");
-                if(type.equals("upload")) {
-                    upload(jsonObject2, username);
+    private void login(JSONObject jsonObject){
+        try {
+            String username = jsonObject.getString("username");
+            String password = jsonObject.getString("password");
+            //Querying the database to find if the username&password combination is correct.
+            String answer = getPassword(username);
+            if (password.equals(answer)) {
+                out.writeUTF("Access granted!");
+                Server.usersOnline.add(username);
+                while (true) {
+                    JSONObject jsonObject2 = new JSONObject(in.readUTF());//Citim JSON
+                    String type = jsonObject2.getString("type");
+                    if (type.equals("upload")) {
+                        upload(jsonObject2, username);
+                    } else if (type.equals("send")) {
+                        send(jsonObject2);
+                    } else if (type.equals("download")) {
+                        download(jsonObject2, username);
+                    } else {
+                        Server.usersOnline.remove(username);
+                        /*for (Iterator<String> it = Server.usersOnline.iterator(); it.hasNext(); )
+                            System.out.println(it.next());*/
+                        return;
+                    }
                 }
-                else if(type.equals("send")){
-                    send(jsonObject2);
-                }
-                else if(type.equals("download")){
-                    download(jsonObject2, username);
-                }
-                else{
-                    Server.usersOnline.remove(username);
-                    return;
-                }
+            } else {
+                out.writeUTF("Access denied!");
             }
-        } else {
-            out.writeUTF("Access denied!");
-            //if(in != null) in.close();
-            //if(out != null) out.close();
         }
+        catch (Exception e){
+            //System.out.print(e);
+        }
+        finally {
+            try{
+                if(in != null) in.close();
+                if(out != null) out.close();
+            }
+            catch (Exception e){
+                //System.out.print(e);
+            }
+        }
+
     }
 
-    private String getPassword(String username) throws Exception{
-        String password = new String();
-        Statement statement = con.createStatement();
-        ResultSet re = statement.executeQuery("SELECT * FROM users WHERE username = '" + username + "';");
-        re.next();
-        return re.getString("password");
+    private String getPassword(String username){
+        try {
+            String password = new String();
+            Statement statement = con.createStatement();
+            ResultSet re = statement.executeQuery("SELECT * FROM users WHERE username = '" + username + "';");
+            re.next();
+            return re.getString("password");
+        }
+        catch(Exception e){
+            return "-1";
+        }
     }
 
     private void signup(JSONObject jsonObject) throws Exception{
@@ -104,8 +121,8 @@ public class ServerThread implements Runnable{
         }
         else{
             out.writeUTF("Singup rejected!");
-            //if(in != null) in.close();
-            //if(out != null) out.close();
+            if(in != null) in.close();
+            if(out != null) out.close();
         }
     }
 
@@ -144,6 +161,10 @@ public class ServerThread implements Runnable{
             fout = new FileOutputStream(Server.pathToServer + "\\" + username + "\\" + filename);
             byte[] mybytearray = new byte[16 * 1024];
             int count;
+            while((count = in.read(mybytearray)) >= 0){
+                fout.write(mybytearray,0, count);
+            }
+            /*int count;
             long length = 0;
             while ((count = in.read(mybytearray)) > 0 && length + count <= size) {
                 fout.write(mybytearray, 0, count);
@@ -153,10 +174,10 @@ public class ServerThread implements Runnable{
                     return;
                 }
             }
-            System.out.println(length + " " + size);
+            System.out.println(length + " " + size);*/
         }
         catch (Exception e){
-            System.out.println(e);
+            //System.out.println(e);
         }
     }
 
@@ -164,26 +185,29 @@ public class ServerThread implements Runnable{
 
     }
 
-    private void download(JSONObject jsonObject, String username) throws Exception{
-        String filename = jsonObject.getString("filename");
+    private void download(JSONObject jsonObject, String username){
+        try {
+            String filename = jsonObject.getString("filename");
 
-        long size = fileDimension(filename, username);
-        if(size != -1){
-            String json = new String("{\"type\":\"Yes\"," +
-                    "\"size\":\"" + size + "\"" + "}");
-            out.writeUTF(json);
-        }
-        else{
-            String json = new String("{\"type\":\"No\";}");
-            out.writeUTF(json);
-            return;
-        }
+            long size = fileDimension(filename, username);
+            if (size != -1) {
+                String json = new String("{\"type\":\"Yes\";}");
+                out.writeUTF(json);
+            } else {
+                String json = new String("{\"type\":\"No\";}");
+                out.writeUTF(json);
+                return;
+            }
 
-        FileInputStream fin = new FileInputStream(new File(Server.pathToServer + "\\" + username + "\\" + filename));
-        byte [] mybytearray  = new byte [16*1024];
-        int count;
-        while ((count = fin.read(mybytearray)) > 0) {
-            out.write(mybytearray, 0, count);
+            FileInputStream fin = new FileInputStream(new File(Server.pathToServer + "\\" + username + "\\" + filename));
+            byte[] mybytearray = new byte[16 * 1024];
+            int count;
+            while ((count = fin.read(mybytearray)) > 0) {
+                out.write(mybytearray, 0, count);
+            }
+        }
+        catch (Exception e){
+            //System.out.println(e);
         }
     }
 
