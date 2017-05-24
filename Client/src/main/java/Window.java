@@ -12,6 +12,7 @@ public class Window {
     static Stage ftpStage;
     static Stage stage;
     static boolean create = false;
+    static Stage acceptWindow;
 
     public void AccountWindow() throws IOException {
         Stage window = new Stage();
@@ -54,6 +55,19 @@ public class Window {
         window.setResizable(false);
         window.setTitle("Alert!");
         window.setScene(scene);
+        window.show();
+
+    }
+
+    public void acceptBox() throws IOException {
+        Stage window = new Stage();
+
+        Parent rootneww = FXMLLoader.load(getClass().getResource("acceptwindow.fxml"));
+        Scene scene = new Scene(rootneww);
+        window.setResizable(false);
+        window.setTitle("Accept???");
+        window.setScene(scene);
+        this.acceptWindow = window;
         window.show();
 
     }

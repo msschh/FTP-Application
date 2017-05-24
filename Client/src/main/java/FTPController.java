@@ -58,6 +58,35 @@ public class FTPController {
         th.start();
     }
 
+    @FXML
+    private TextField searchUserText;
+    @FXML
+    private TextField fileText;
+    public void pressSend(ActionEvent e) throws IOException {
+
+        String username = searchUserText.getText();
+        String filename = fileText.getText();
+
+        Socket client = new Socket(Controller.serverIP, 40000);
+
+        DataInputStream in = new DataInputStream(client.getInputStream());
+        DataOutputStream out = new DataOutputStream(client.getOutputStream());
+
+        String json = new String("{\"type\":\"login\",\"username\":\"" +
+                Controller.uName + "\",\"password\":\"" + Controller.uPassword + "\"}");
+        out.writeUTF(json);
+        String ans = in.readUTF();
+
+        String json2 = new String("{\"type\":\"send\",\"user\":\"" +
+                username + "\",\"file\":\"" + filename + "\"}");
+
+        out.writeUTF(json2);
+        String answer = in.readUTF();
+        System.out.println(answer);
+
+
+    }
+
 
 
 }

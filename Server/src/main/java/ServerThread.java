@@ -1,10 +1,11 @@
 import java.io.*;
 import java.net.Socket;
 import org.json.JSONObject;
+
+import java.nio.file.Files;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
 
 public class ServerThread implements Runnable{
 
@@ -40,7 +41,7 @@ public class ServerThread implements Runnable{
 
         }
         catch (Exception e){
-            System.out.println(e);
+            //System.out.println(e);
         }
     }
 
@@ -52,14 +53,17 @@ public class ServerThread implements Runnable{
             String answer = getPassword(username);
             if (password.equals(answer)) {
                 out.writeUTF("Access granted!");
-                Server.usersOnline.add(username);
+                if(!Server.usersOnline.contains(username)){
+                    Server.socketUsers.put(username, client);
+                    Server.usersOnline.add(username);
+                }
                 while (true) {
                     JSONObject jsonObject2 = new JSONObject(in.readUTF());//Citim JSON
                     String type = jsonObject2.getString("type");
                     if (type.equals("upload")) {
                         upload(jsonObject2, username);
                     } else if (type.equals("send")) {
-                        send(jsonObject2);
+                        send(jsonObject2, username);
                     } else if (type.equals("download")) {
                         download(jsonObject2, username);
                     } else {
@@ -78,8 +82,8 @@ public class ServerThread implements Runnable{
         }
         finally {
             try{
-                if(in != null) in.close();
-                if(out != null) out.close();
+                //if(in != null) in.close();
+                //if(out != null) out.close();
             }
             catch (Exception e){
                 //System.out.print(e);
@@ -121,8 +125,8 @@ public class ServerThread implements Runnable{
         }
         else{
             out.writeUTF("Singup rejected!");
-            if(in != null) in.close();
-            if(out != null) out.close();
+            //if(in != null) in.close();
+            //if(out != null) out.close();
         }
     }
 
@@ -181,8 +185,59 @@ public class ServerThread implements Runnable{
         }
     }
 
-    private void send(JSONObject jsonObject){
-
+    private void send(JSONObject jsonObject, String username){
+        try{
+            String user = jsonObject.getString("user");
+            String file = jsonObject.getString("file");
+            boolean online = Server.usersOnline.contains(user);
+            System.out.print(user + " " + file + online);
+            if(!online){
+                out.writeUTF("User offline!");
+                return;
+            }
+            Statement statement = con.createStatement();
+            ResultSet re = statement.executeQuery("SELECT id FROM users WHERE username = '" + username + "';");
+            re.next();
+            String id_user = re.getString("id");
+            ResultSet res = statement.executeQuery("SELECT name FROM files WHERE id_user = '" + id_user + "';");
+            boolean ok = false;
+            while(res.next()){
+                if(res.getString("name").equals(file)){
+                    ok = true;
+                    break;
+                }
+            }
+            if(!ok) {
+                out.writeUTF("File not found!");
+            }
+            /*Socket sendSocket = Server.socketUsers.get(user);
+            DataInputStream iin = new DataInputStream(sendSocket.getInputStream());
+            DataOutputStream oout = new DataOutputStream(sendSocket.getOutputStream());
+            System.out.println("trimitem");
+            String json = new String("{\"name\":\"" + username + "\"," +
+                    "\"file\":\"" + file + "\"" + "}");
+            System.out.println("trimitem");
+            oout.writeUTF(json);
+            System.out.println("trimitem");
+            String answer = iin.readUTF();
+            System.out.print(answer);
+            if(answer.equals("No")){
+                out.writeUTF(answer);
+            }
+            else{*/
+                out.writeUTF("Yes");
+                Files.copy( new File(Server.pathToServer + "\\" + username + "\\" + file).toPath(),
+                        new File(Server.pathToServer + "\\" + user + "\\" + file).toPath() );
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+                statement.execute("INSERT INTO files (id_user, name, dimension, add_date) VALUES ('"
+                        + id_user + "','" + file + "','"
+                        + new File(Server.pathToServer + "\\" + username + "\\" + file).length() + "','" + now + "')");
+            //}
+        }
+        catch (Exception e){
+            System.out.print(e);
+        }
     }
 
     private void download(JSONObject jsonObject, String username){
