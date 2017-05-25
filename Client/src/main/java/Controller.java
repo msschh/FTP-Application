@@ -10,7 +10,7 @@ public class Controller{
 
     static public String uName;
     static public String uPassword;
-    static public String serverIP = "localhost";//"93.115.17.244";
+    static public String serverIP = "10.11.42.115";
     static public Socket client;
 
     public void pressSignup(ActionEvent e) throws IOException {

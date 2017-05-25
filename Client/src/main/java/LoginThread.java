@@ -17,6 +17,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class LoginThread implements Runnable{
 
@@ -41,22 +42,23 @@ public class LoginThread implements Runnable{
         while(true) {
             try {
                 String str = "nulll";
-                System.out.println("here");
+               // System.out.println("here");
 
                 JSONObject jsonObject = null;
-                System.out.println("xxx");
+                //System.out.println("xxx");
                 ///jsonObject = new JSONObject(in.readUTF());
                 str = in.readUTF();
                 System.out.println(str);
-                out.writeUTF("Yes");
+
+                Scanner cin = new Scanner(System.in);
+
+                System.out.println("Accepti fisierul?");
+                String s = cin.next();
+                System.out.println("out");
+                out.writeUTF(s);
+                System.out.println("ok!!!?");
                 //String name = jsonObject.getString("name");
                 //String file = jsonObject.getString("file");
-
-                System.out.println(userAnswer);
-
-
-                System.out.println("aici!");
-
             }
             catch (Exception e){
                 System.out.print(e);
