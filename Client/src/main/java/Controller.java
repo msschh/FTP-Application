@@ -36,8 +36,8 @@ public class Controller{
 
         //Create JSON string
         String json = new String("{\"type\":\"login\",\"username\":\"" + username + "\",\"password\":\"" + encryptedPassword + "\"}");
-        System.out.println(username);
-        System.out.println(encryptedPassword);
+        //System.out.println(username);
+        //System.out.println(encryptedPassword);
 
         //Send the JSON to the server through a socket, then wait for it's response.
         client = new Socket(serverIP, 40000);//93.115.17.244
@@ -46,14 +46,14 @@ public class Controller{
         out2.writeUTF(json);
         String answer = in2.readUTF();
 
-        System.out.println("ok");
+        //System.out.println("ok");
 
-        System.out.print(answer);
+        //System.out.print(answer);
         if (answer.equals("Access granted!")) {
             w.FTPWindow();
             w.stage.close();
-            System.out.println(username);
-            System.out.println(encryptedPassword);
+            //System.out.println(username);
+            //System.out.println(encryptedPassword);
 
             /*Socket client = new Socket(serverIP, 40000);//93.115.17.244
             DataInputStream in = new DataInputStream(client.getInputStream());
@@ -65,7 +65,7 @@ public class Controller{
             th.start();
 
         } else {
-            System.out.println(answer);
+            //System.out.println(answer);
             w.alertBox();
         }
     }
@@ -106,15 +106,15 @@ public class Controller{
                     "\"email\":\"" + eMail + "\"," +
                     "\"username\":\"" + userName + "\"," +
                     "\"password\":\"" + Validate.vigenereEncryption(pass) + "\"" + "}";
-            System.out.println(Validate.vigenereEncryption(pass));
+            //System.out.println(Validate.vigenereEncryption(pass));
             Socket client = new Socket(serverIP, 40000);//93.115.17.244
             DataInputStream in = new DataInputStream(client.getInputStream());
             DataOutputStream out = new DataOutputStream(client.getOutputStream());
-            System.out.println(json);
+            //System.out.println(json);
             out.writeUTF(json);
             String answer = in.readUTF();
 
-            System.out.println("ok");
+            //System.out.println("ok");
 
             Window w = new Window();
             if (answer.equals("Singup accepted!")) {

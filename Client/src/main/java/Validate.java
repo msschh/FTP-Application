@@ -70,7 +70,7 @@ public class Validate {
                 if (c >= '0' && c < '9')
                     encriptedPassword += (char)(c + 1);
                 else
-                    encriptedPassword += (char)(c - 1);
+                    encriptedPassword += (char)(c - 9);
 
 
             j = ++j % key.length();

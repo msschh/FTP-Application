@@ -23,7 +23,7 @@ public class ServerThread implements Runnable{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ftp-application", "Ftp", "cisco12345");
         } catch(Exception e){
-            System.out.println(e);
+            //System.out.println(e);
         }
     }
 
@@ -60,7 +60,6 @@ public class ServerThread implements Runnable{
                 }
                 //while (true) {
                     JSONObject jsonObject2 = new JSONObject(in.readUTF());//Citim JSON
-                    System.out.print(jsonObject2);
                     String type = jsonObject2.getString("type");
                     if (type.equals("upload")) {
                         upload(jsonObject2, username);
@@ -192,7 +191,6 @@ public class ServerThread implements Runnable{
             String user = jsonObject.getString("user");
             String file = jsonObject.getString("file");
             boolean online = Server.usersOnline.contains(user);
-            System.out.print(user + " " + file + online);
             if(!online){
                 out.writeUTF("User offline!");
                 return;
@@ -211,18 +209,17 @@ public class ServerThread implements Runnable{
             }
             if(!ok) {
                 out.writeUTF("File not found!");
+                return;
             }
             Socket sendSocket = Server.socketUsers.get(user);
             DataInputStream iin = new DataInputStream(sendSocket.getInputStream());
             DataOutputStream oout = new DataOutputStream(sendSocket.getOutputStream());
-            System.out.println("trimitem");
             String json = new String("{\"name\":\"" + username + "\"," +
                     "\"file\":\"" + file + "\"" + "}");
-            System.out.println("trimitem");
             oout.writeUTF(json);
+            System.out.print("asd");
             String answer = iin.readUTF();
-            System.out.println("trimitem");
-            System.out.print(answer);
+            System.out.println(answer);
             if(answer.equals("No")){
                 out.writeUTF(answer);
             }
@@ -250,7 +247,7 @@ public class ServerThread implements Runnable{
             }
         }
         catch (Exception e){
-            System.out.print(e);
+            //System.out.print(e);
         }
     }
 

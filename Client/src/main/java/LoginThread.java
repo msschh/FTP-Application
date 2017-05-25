@@ -44,24 +44,24 @@ public class LoginThread implements Runnable{
                 String str = "nulll";
                // System.out.println("here");
 
-                JSONObject jsonObject = null;
+                JSONObject jsonObject = new JSONObject(in.readUTF());
                 //System.out.println("xxx");
                 ///jsonObject = new JSONObject(in.readUTF());
-                str = in.readUTF();
-                System.out.println(str);
+
+                System.out.println(jsonObject);
 
                 Scanner cin = new Scanner(System.in);
+                String name = jsonObject.getString("name");
+                String file = jsonObject.getString("file");
 
-                System.out.println("Accepti fisierul?");
+                System.out.println("Accepti fisierul " + file + " de la userul " + name + "? Yes/No");
                 String s = cin.next();
-                System.out.println("out");
+                //System.out.println("out");
                 out.writeUTF(s);
-                System.out.println("ok!!!?");
-                //String name = jsonObject.getString("name");
-                //String file = jsonObject.getString("file");
+                //System.out.println("ok!!!?");
             }
             catch (Exception e){
-                System.out.print(e);
+                //System.out.print(e);
             }
         }
     }

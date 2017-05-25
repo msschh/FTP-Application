@@ -28,7 +28,7 @@ public class UploadThread implements Runnable{
                     "\"size\":\"" + new File(path).length() + "\"," +
                     "\"filename\":\"" + fileName + "\"" + "}";
 
-            System.out.println(json);
+            //System.out.println(json);
 
             out.writeUTF(json);
 
