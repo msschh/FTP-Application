@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 
 public class ServerThread implements Runnable{
 
@@ -30,7 +31,6 @@ public class ServerThread implements Runnable{
     public void run(){
         try {
             JSONObject jsonObject = new JSONObject(in.readUTF());//Citim JSON
-
             String type = jsonObject.getString("type");
             if(type.equals("login")){
                 login(jsonObject);
@@ -54,11 +54,13 @@ public class ServerThread implements Runnable{
             if (password.equals(answer)) {
                 out.writeUTF("Access granted!");
                 if(!Server.usersOnline.contains(username)){
-                    Server.socketUsers.put(username, client);
                     Server.usersOnline.add(username);
+                    Server.socketUsers.put(username, client);
+                    return;
                 }
-                while (true) {
+                //while (true) {
                     JSONObject jsonObject2 = new JSONObject(in.readUTF());//Citim JSON
+                    System.out.print(jsonObject2);
                     String type = jsonObject2.getString("type");
                     if (type.equals("upload")) {
                         upload(jsonObject2, username);
@@ -68,10 +70,10 @@ public class ServerThread implements Runnable{
                         download(jsonObject2, username);
                     } else {
                         Server.usersOnline.remove(username);
-                        /*for (Iterator<String> it = Server.usersOnline.iterator(); it.hasNext(); )
-                            System.out.println(it.next());*/
+                    //for (Iterator<String> it = Server.usersOnline.iterator(); it.hasNext(); )
+                    //System.out.println(it.next());
                         return;
-                    }
+                //    }
                 }
             } else {
                 out.writeUTF("Access denied!");
@@ -210,7 +212,7 @@ public class ServerThread implements Runnable{
             if(!ok) {
                 out.writeUTF("File not found!");
             }
-            /*Socket sendSocket = Server.socketUsers.get(user);
+            Socket sendSocket = Server.socketUsers.get(user);
             DataInputStream iin = new DataInputStream(sendSocket.getInputStream());
             DataOutputStream oout = new DataOutputStream(sendSocket.getOutputStream());
             System.out.println("trimitem");
@@ -218,22 +220,34 @@ public class ServerThread implements Runnable{
                     "\"file\":\"" + file + "\"" + "}");
             System.out.println("trimitem");
             oout.writeUTF(json);
-            System.out.println("trimitem");
             String answer = iin.readUTF();
+            System.out.println("trimitem");
             System.out.print(answer);
             if(answer.equals("No")){
                 out.writeUTF(answer);
             }
-            else{*/
+            else{
                 out.writeUTF("Yes");
+                statement = con.createStatement();
+                re = statement.executeQuery("SELECT id FROM users WHERE username = '" + user + "';");
+                re.next();
+                String id_user2 = re.getString("id");
+                res = statement.executeQuery("SELECT name FROM files WHERE id_user = '" + id_user2 + "';");
+                boolean ok2 = false;
+                while(res.next()){
+                    if(res.getString("name").equals(file)){
+                        ok2 = true;
+                        break;
+                    }
+                }
                 Files.copy( new File(Server.pathToServer + "\\" + username + "\\" + file).toPath(),
                         new File(Server.pathToServer + "\\" + user + "\\" + file).toPath() );
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
                 statement.execute("INSERT INTO files (id_user, name, dimension, add_date) VALUES ('"
-                        + id_user + "','" + file + "','"
+                        + id_user2 + "','" + file + "','"
                         + new File(Server.pathToServer + "\\" + username + "\\" + file).length() + "','" + now + "')");
-            //}
+            }
         }
         catch (Exception e){
             System.out.print(e);

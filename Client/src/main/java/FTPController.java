@@ -20,12 +20,19 @@ public class FTPController {
 
     public void pressLogout(ActionEvent e) throws IOException {
 
-        String json = "{\"type\":\"logout\"," +
-                "\"username\":\"" + Controller.uName + "\"" + "}";
-        DataInputStream in = new DataInputStream(Controller.client.getInputStream());
-        DataOutputStream out = new DataOutputStream(Controller.client.getOutputStream());
+        Socket client = new Socket(Controller.serverIP, 40000);
+
+        DataInputStream in = new DataInputStream(client.getInputStream());
+        DataOutputStream out = new DataOutputStream(client.getOutputStream());
+
+        String json = new String("{\"type\":\"login\",\"username\":\"" +
+                Controller.uName + "\",\"password\":\"" + Controller.uPassword + "\"}");
         out.writeUTF(json);
-        Socket client = new Socket(Controller.serverIP, 40000);//93.115.17.244
+        in.readUTF();
+
+        json = "{\"type\":\"logout\"," +
+                "\"username\":\"" + Controller.uName + "\"" + "}";
+        out.writeUTF(json);
         System.out.println(json);
 
         System.out.println(json.toString());
@@ -75,7 +82,7 @@ public class FTPController {
         String json = new String("{\"type\":\"login\",\"username\":\"" +
                 Controller.uName + "\",\"password\":\"" + Controller.uPassword + "\"}");
         out.writeUTF(json);
-        String ans = in.readUTF();
+        in.readUTF();
 
         String json2 = new String("{\"type\":\"send\",\"user\":\"" +
                 username + "\",\"file\":\"" + filename + "\"}");

@@ -2,25 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Server/data/ooo/exemplu.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Server/data/qwe/exemplu.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Server/data/qwe/exemplu2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Server/data/qwe/exemplu3.pdf" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller.class" afterPath="$PROJECT_DIR$/target/classes/Controller.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FTPController.class" afterPath="$PROJECT_DIR$/target/classes/FTPController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/LoginThread.class" afterPath="$PROJECT_DIR$/target/classes/LoginThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Window.class" afterPath="$PROJECT_DIR$/target/classes/Window.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Server/target/classes/Server.class" afterPath="$PROJECT_DIR$/../Server/target/classes/Server.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Server/target/classes/ServerThread.class" afterPath="$PROJECT_DIR$/../Server/target/classes/ServerThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FTPController.java" afterPath="$PROJECT_DIR$/src/main/java/FTPController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/LoginThread.java" afterPath="$PROJECT_DIR$/src/main/java/LoginThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Window.java" afterPath="$PROJECT_DIR$/src/main/java/Window.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/ftpwindow.fxml" afterPath="$PROJECT_DIR$/src/main/resources/ftpwindow.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ftpwindow.fxml" afterPath="$PROJECT_DIR$/target/classes/ftpwindow.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Server/src/main/java/Server.java" afterPath="$PROJECT_DIR$/../Server/src/main/java/Server.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Server/src/main/java/ServerThread.java" afterPath="$PROJECT_DIR$/../Server/src/main/java/ServerThread.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -86,31 +76,21 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ftpwindow.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/ftpwindow.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="235" lean-forward="false" selection-start-line="8" selection-start-column="205" selection-end-line="8" selection-end-column="235" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Window.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Window.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding>
-                <marker date="1495656892563" expanded="false" signature="2026:2057" ph="{...}" />
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="12" column="48" lean-forward="false" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+              <folding>
+                <element signature="method#pressSignup#0;class#Controller#0" expanded="false" />
+                <element signature="method#pressCreate#0;class#Controller#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -119,8 +99,8 @@
       <file leaf-file-name="LoginThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/LoginThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="61" column="23" lean-forward="false" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+            <state relative-caret-position="189">
+              <caret line="49" column="40" lean-forward="false" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
               <folding>
                 <element signature="e#0#1601#0" expanded="true" />
               </folding>
@@ -128,21 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WinController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/WinController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FTPController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/FTPController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+            <state relative-caret-position="-202">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="40" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#pressUpload#0;class#FTPController#0" expanded="false" />
@@ -193,13 +163,13 @@
         <option value="$PROJECT_DIR$/src/main/java/UploadThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/DownloadThread.java" />
         <option value="$PROJECT_DIR$/src/main/resources/date.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/resources/ftpwindow.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/acceptwindow.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/FTPController.java" />
         <option value="$PROJECT_DIR$/src/main/java/WinController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Window.java" />
         <option value="$PROJECT_DIR$/src/main/java/LoginThread.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FTPController.java" />
       </list>
     </option>
   </component>
@@ -244,9 +214,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -319,6 +288,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -335,7 +305,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Server" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -617,6 +587,7 @@
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -745,6 +716,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -830,11 +807,13 @@
       <workItem from="1495225032269" duration="640000" />
       <workItem from="1495562590893" duration="4935000" />
       <workItem from="1495657484479" duration="1033000" />
+      <workItem from="1495659348527" duration="5327000" />
+      <workItem from="1495688004218" duration="1166000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18680000" />
+    <option name="totallyTimeSpent" value="25173000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -932,7 +911,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -963,9 +944,7 @@
         <state relative-caret-position="132">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#pressSignup#0;class#Controller#0" expanded="false" />
-            <element signature="method#pressLogin#0;class#Controller#0" expanded="false" />
             <element signature="method#pressCreate#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -1016,7 +995,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1047,9 +1028,7 @@
         <state relative-caret-position="836">
           <caret line="43" column="33" lean-forward="false" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#pressSignup#0;class#Controller#0" expanded="false" />
-            <element signature="method#pressLogin#0;class#Controller#0" expanded="false" />
             <element signature="method#pressCreate#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -1100,7 +1079,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1109,9 +1090,7 @@
         <state relative-caret-position="66">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#pressSignup#0;class#Controller#0" expanded="false" />
-            <element signature="method#pressLogin#0;class#Controller#0" expanded="false" />
             <element signature="method#pressCreate#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -1140,7 +1119,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1149,9 +1130,7 @@
         <state relative-caret-position="88">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#pressSignup#0;class#Controller#0" expanded="false" />
-            <element signature="method#pressLogin#0;class#Controller#0" expanded="false" />
             <element signature="method#pressCreate#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -1281,19 +1260,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-127">
-          <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#pressSignup#0;class#Controller#0" expanded="false" />
-            <element signature="method#pressLogin#0;class#Controller#0" expanded="false" />
-            <element signature="method#pressCreate#0;class#Controller#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/UploadThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
@@ -1326,24 +1292,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding>
-            <marker date="1495656892563" expanded="false" signature="2026:2057" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/acceptwindow.fxml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/WinController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1353,10 +1301,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding>
+            <marker date="1495656892563" expanded="false" signature="2026:2057" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="48" lean-forward="false" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+          <folding>
+            <element signature="method#pressSignup#0;class#Controller#0" expanded="false" />
+            <element signature="method#pressCreate#0;class#Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LoginThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="61" column="23" lean-forward="false" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+        <state relative-caret-position="189">
+          <caret line="49" column="40" lean-forward="false" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
           <folding>
             <element signature="e#0#1601#0" expanded="true" />
           </folding>
@@ -1365,8 +1344,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FTPController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+        <state relative-caret-position="-202">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="40" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#pressUpload#0;class#FTPController#0" expanded="false" />

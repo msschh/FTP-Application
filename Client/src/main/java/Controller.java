@@ -10,7 +10,7 @@ public class Controller{
 
     static public String uName;
     static public String uPassword;
-    static public String serverIP = "93.115.17.244";
+    static public String serverIP = "localhost";//"93.115.17.244";
     static public Socket client;
 
     public void pressSignup(ActionEvent e) throws IOException {
@@ -41,10 +41,10 @@ public class Controller{
 
         //Send the JSON to the server through a socket, then wait for it's response.
         client = new Socket(serverIP, 40000);//93.115.17.244
-        DataInputStream in = new DataInputStream(client.getInputStream());
-        DataOutputStream out = new DataOutputStream(client.getOutputStream());
-        out.writeUTF(json);
-        String answer = in.readUTF();
+        DataInputStream in2 = new DataInputStream(client.getInputStream());
+        DataOutputStream out2 = new DataOutputStream(client.getOutputStream());
+        out2.writeUTF(json);
+        String answer = in2.readUTF();
 
         System.out.println("ok");
 
@@ -54,6 +54,12 @@ public class Controller{
             w.stage.close();
             System.out.println(username);
             System.out.println(encryptedPassword);
+
+            /*Socket client = new Socket(serverIP, 40000);//93.115.17.244
+            DataInputStream in = new DataInputStream(client.getInputStream());
+            DataOutputStream out = new DataOutputStream(client.getOutputStream());
+            out.writeUTF(json);
+            in.readUTF();*/
             LoginThread login = new LoginThread(client);
             Thread th = new Thread(login);
             th.start();

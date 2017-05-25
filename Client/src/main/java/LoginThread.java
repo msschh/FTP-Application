@@ -25,10 +25,10 @@ public class LoginThread implements Runnable{
 
     public static String userAnswer;
 
-    LoginThread(Socket client){
+    LoginThread(Socket socket){
         try {
-            in = new DataInputStream(client.getInputStream());
-            out = new DataOutputStream(client.getOutputStream());
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
         }
         catch (Exception e){
             System.out.print(e);
@@ -47,13 +47,13 @@ public class LoginThread implements Runnable{
                 System.out.println("xxx");
                 ///jsonObject = new JSONObject(in.readUTF());
                 str = in.readUTF();
+                System.out.println(str);
+                out.writeUTF("Yes");
                 //String name = jsonObject.getString("name");
                 //String file = jsonObject.getString("file");
-                System.out.println(str);
 
                 System.out.println(userAnswer);
 
-                out.writeUTF("Yes");
 
                 System.out.println("aici!");
 
